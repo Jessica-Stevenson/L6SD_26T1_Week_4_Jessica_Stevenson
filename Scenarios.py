@@ -119,3 +119,53 @@ counter2.increment()
 counter1.increment()
 
 print("Final Count:", counter2.get_count())
+
+#Greeting Card Personalization - Prototype Pattern
+import copy
+
+class CardPrototype:
+    def clone(self):
+        pass
+
+
+class GreetingCard(CardPrototype):
+    def __init__(self, design, message="", theme=""):
+        self.design = design
+        self.message = message
+        self.theme = theme
+
+    def clone(self):
+        return copy.copy(self)
+
+    def __str__(self):
+        return (
+            f"Design: {self.design}\n"
+            f"Theme: {self.theme}\n"
+            f"Message: {self.message}\n"
+            "-------------------------"
+        )
+
+birthday_template = GreetingCard("Birthdaycore Design")
+wedding_template = GreetingCard("Floral Design")
+holiday_template = GreetingCard("Summer Xmas Design")
+
+cards = []
+
+card1 = birthday_template.clone()
+card1.message = "Happy Birthday [Name]!"
+card1.theme = "Colourful"
+cards.append(card1)
+
+card2 = wedding_template.clone()
+card2.message = "Congratulations on your special day!"
+card2.theme = "White & Gold"
+cards.append(card2)
+
+card3 = holiday_template.clone()
+card3.message = "Merry Christmas!"
+card3.theme = "Red & Green"
+cards.append(card3)
+
+for idx, card in enumerate(cards, start=1):
+    print(f"Card {idx}")
+    print(card)
