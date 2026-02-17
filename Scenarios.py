@@ -92,3 +92,30 @@ for _ in range(4):
     shapes.append(triangle_prototype.clone())
 for idx, shape in enumerate(shapes, start=1):
     print(f"Shape {idx}: {shape}")
+
+#Global Counter - Singleton Pattern
+class GlobalCounter:
+    _instance = None
+    _count = 0
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(GlobalCounter, cls).__new__(cls)
+            cls._count = 0
+        return cls._instance
+
+    def increment(self):
+        self._count += 1
+        print(f"Counter incremented to {self._count}")
+
+    def get_count(self):
+        return self._count
+
+counter1 = GlobalCounter()
+counter2 = GlobalCounter()
+
+counter1.increment()
+counter2.increment()
+counter1.increment()
+
+print("Final Count:", counter2.get_count())
