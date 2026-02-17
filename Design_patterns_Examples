@@ -45,7 +45,7 @@ class PizzaFactory:
         elif pizza_type == "Vegetarian":
             return VegetarianPizza()
         
-# Usage
+#Usage
 factory = PizzaFactory()
 pizza1 = factory.create_pizza("Margherita") 
 pizza2 = factory.create_pizza("Pepperoni") 
