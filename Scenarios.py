@@ -50,3 +50,45 @@ cars = [Car1, Car2, Car3]
 
 for car in cars:
     car.make()
+
+#Drawing tool - Prototype Pattern
+import copy
+
+class ShapesPrototype:
+    def clone(self):
+        pass
+
+class Square(ShapesPrototype):
+    def clone(self):
+        return copy.copy(self)
+    
+    def __str__(self):
+        return "Square"
+
+class Circle(ShapesPrototype):
+    def clone(self):
+        return copy.copy(self)
+    
+    def __str__(self):
+        return "Circle"
+
+class Triangle(ShapesPrototype):
+    def clone(self):
+        return copy.copy(self)
+    
+    def __str__(self):
+        return "Triangle"
+    
+square_prototype = Square()
+circle_prototype = Circle()
+triangle_prototype = Triangle()
+shapes = []
+
+for _ in range(5):
+    shapes.append(square_prototype.clone())
+for _ in range(3):
+    shapes.append(circle_prototype.clone())
+for _ in range(4):
+    shapes.append(triangle_prototype.clone())
+for idx, shape in enumerate(shapes, start=1):
+    print(f"Shape {idx}: {shape}")
