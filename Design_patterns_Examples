@@ -1,0 +1,88 @@
+#Singleton Pattern
+class PresidentOffice:
+    _instance = None
+    _president = None
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(PresidentOffice, cls).__new__(cls) 
+            cls._president = "John Doe" # Assign the President
+        return cls._instance
+    def meet_president (self, visitor_name):
+        print(f"{visitor_name} is meeting President {self._president}")
+
+#Usage
+office1 = PresidentOffice()
+office2 = PresidentOffice()
+office1.meet_president("Alice")
+office2.meet_president("Bob")
+#Alice is meeting President John Doe
+#Bob is meeting President John Doe
+print(office1 is office2)
+
+#Factory Pattern
+class Pizza:
+    def prepare(self):
+        pass
+
+class MargheritaPizza (Pizza):
+    def prepare(self):
+        print("Preparing Margherita Pizza")
+
+class PepperoniPizza (Pizza):
+    def prepare(self):
+        print("Preparing Pepperoni Pizza")
+
+class VegetarianPizza (Pizza):
+    def prepare(self):
+        print("Preparing Vegetarian Pizza")
+
+class PizzaFactory:
+    def create_pizza(self, pizza_type): 
+        if pizza_type == "Margherita":
+            return MargheritaPizza()
+        elif pizza_type == "Pepperoni":
+            return PepperoniPizza()
+        elif pizza_type == "Vegetarian":
+            return VegetarianPizza()
+        
+# Usage
+factory = PizzaFactory()
+pizza1 = factory.create_pizza("Margherita") 
+pizza2 = factory.create_pizza("Pepperoni") 
+pizza3 = factory.create_pizza("Vegetarian")
+
+pizzas = [pizza1, pizza2, pizza3]
+
+for pizza in pizzas:
+    pizza.prepare()
+
+#Prototype Pattern
+import copy
+
+class StuffedAnimalPrototype:
+    def clone(self):
+        pass
+class Bear (StuffedAnimalPrototype):
+    def clone(self):
+        return copy.copy(self)
+class Rabbit (StuffedAnimalPrototype):
+    def clone(self):
+        return copy.copy(self)
+class Elephant (StuffedAnimalPrototype):
+    def clone(self):
+        return copy.copy(self)
+    
+#Usage
+bear_prototype = Bear()
+rabbit_prototype = Rabbit()
+elephant_prototype = Elephant()
+stuffed_animals = []
+
+for _ in range(5):
+    stuffed_animals.append(bear_prototype.clone())
+for _ in range(3):
+    stuffed_animals.append(rabbit_prototype.clone())
+for _ in range(4):
+    stuffed_animals.append(elephant_prototype.clone())
+for idx, animal in enumerate(stuffed_animals, start=1):
+    print(f"Stuffed Animal {idx}: {animal}")
